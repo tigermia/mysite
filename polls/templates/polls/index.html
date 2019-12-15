@@ -1,0 +1,63 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
+<div id="mia0zi"></div>
+<script>document.getElementById('mia0zi').innerHTML = '{{ html }}'</script>
+{{ html }}
+
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        <!--
+        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+        -->
+        {% endfor %}
+    </ul>
+
+{% else %}
+    <p>No polls are available.</p>
+
+{% endif %}
+
+{% if sqlResult %}
+        <ul>
+    {% for q in sqlResult %}
+
+            <li><a href="{% url 'polls:detail' q.id %}">{{q.val}}</a></li>
+
+    {% endfor %}
+        </ul>
+{% endif %}
+
+<p>Company Name: {{company.name}}</p>
+<p>Address: {{company.address}}</p>
+<p>Owner: {{company.boss.fName}} {{company.boss.lName}} {{company.boss.age}}</p>
+
+{% if company.boss.luxuriousStuff %}
+        <ul>
+    {% for s in company.boss.luxuriousStuff %}
+            <li>{{s}} </li>
+    {% endfor %}
+        </ul>
+{% endif %}
+
+{% if company.boss.charactors %}
+        <ul>
+    {% for s in company.boss.charactors %}
+            <li>{{s}} </li>
+    {% endfor %}
+        </ul>
+{% endif %}
+
+<p>Employees</p>
+{% if company.employees %}
+        <ul>
+    {% for emp in company.employees %}
+
+            <li>{{emp.fName}} {{emp.lName}} {{emp.age}} </li>
+
+    {% endfor %}
+        </ul>
+{% endif %}

@@ -7,7 +7,7 @@ from django.utils import timezone
 
 
 class QuestionChild(Question):
-    question_new = mdls.CharField(max_length=300)
+    question_new = mdls.CharField(max_length=400)
 
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)

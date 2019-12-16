@@ -4,8 +4,10 @@ import datetime
 from django.utils import timezone
 
 
+
+
 class QuestionChild(Question):
-    question_new = mdls.CharField(max_length=200)
+    question_new = mdls.CharField(max_length=300)
 
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
